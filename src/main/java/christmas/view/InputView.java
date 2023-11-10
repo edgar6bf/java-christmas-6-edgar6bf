@@ -12,10 +12,10 @@ public class InputView {
         this.scanner = scanner;
     }
 
-    public int inputExpectedVisitDate(int startDate, int endDate) {
+    public int inputExpectedVisitDate() {
         printInputMessage(INPUT_EXPECTED_VISIT_DATE_MESSAGE);
 
-        return scanner.inputNumberWithInRange(startDate, endDate);
+        return scanner.inputNumber();
     }
 
     private void printInputMessage(String message) {

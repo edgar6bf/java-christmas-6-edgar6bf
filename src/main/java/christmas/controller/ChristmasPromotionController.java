@@ -1,5 +1,6 @@
 package christmas.controller;
 
+import christmas.domain.order.OrderDate;
 import christmas.view.InputView;
 import christmas.view.OutputView;
 
@@ -17,20 +18,18 @@ public class ChristmasPromotionController {
 
     public void run() {
         outputView.printProgramStartMessage();
-        int expectedVisitDate = inputExpectedVisitDate();
-        System.out.println("expectedVisitDate = " + expectedVisitDate);
+        OrderDate orderDate = inputOrderDate();
     }
 
-    private int inputExpectedVisitDate() {
-        int startDate = 1;
-        int endDate = 31;
-
+    private OrderDate inputOrderDate() {
         try {
-            return inputView.inputExpectedVisitDate(startDate, endDate);
+            int expectedVisitDate = inputView.inputExpectedVisitDate();
+
+            return new OrderDate(expectedVisitDate);
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(INPUT_EXPECTED_VISIT_DATE_ERROR_MESSAGE);
 
-            return inputExpectedVisitDate();
+            return inputOrderDate();
         }
     }
 }

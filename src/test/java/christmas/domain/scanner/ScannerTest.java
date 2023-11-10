@@ -13,49 +13,39 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class ScannerTest {
 
-    @DisplayName("지정한 범위 내 정수를 입력받는다.")
+    @DisplayName("정수를 입력받는다.")
     @Test
-    void inputNumberInRange() throws Exception {
+    void inputNumber() throws Exception {
         // Given
-        int startRange = 1;
-        int endRange = 31;
         String validInputValue = "25";
+        int expectedValue = Integer.parseInt(validInputValue);
         Scanner scanner = new Scanner(setTestConsole(validInputValue));
 
         // When
-        int inputNumber = scanner.inputNumberWithInRange(startRange, endRange);
+        int inputNumber = scanner.inputNumber();
 
         // Then
-        assertThat(inputNumber).isBetween(startRange, endRange);
+        assertThat(inputNumber).isEqualTo(expectedValue);
     }
 
     private Console setTestConsole(String input) {
         return () -> input;
     }
 
-    @DisplayName("지정한 범위 밖 정수 혹은 정수 외 값을 입력하면 예외가 발생한다.")
+    @DisplayName("정수 외 값을 입력하면 예외가 발생한다.")
     @MethodSource("invalidInputValues")
-    @ParameterizedTest(name = "[{index}] \"{0}\" => {1}")
-    void inputInvalidValue(String invalidInputValue) throws Exception {
+    @ParameterizedTest(name = "[{index}] \"{0}\" => Throw Exception")
+    void inputNotNumberValue(String invalidInputValue) throws Exception {
         // Given
-        int startRange = 1;
-        int endRange = 31;
         Scanner scanner = new Scanner(setTestConsole(invalidInputValue));
 
         // When & Then
-        assertThatThrownBy(() -> scanner.inputNumberWithInRange(startRange, endRange))
-                .isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(scanner::inputNumber)
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("입력값이 정수가 아닙니다.");
     }
 
     private static Stream<String> invalidInputValues() {
-        return Stream.of(
-                "-1",
-                "-13",
-                "32",
-                "32343",
-                "aafefe",
-                "d e e fef e e e e ef efe e d",
-                "d e e fef e e e  543 343434"
-        );
+        return Stream.of("a", " 3", "4 ", "ffefe", "feafef-3 3", "-4f");
     }
 }
