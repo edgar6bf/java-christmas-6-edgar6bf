@@ -1,6 +1,6 @@
-package christmas.domain.scanner;
+package christmas.view;
 
-import christmas.domain.scanner.console.Console;
+import christmas.domain.console.Console;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -11,18 +11,18 @@ import java.util.stream.Stream;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-class ScannerTest {
+class InputViewTest {
 
-    @DisplayName("정수를 입력받는다.")
+    @DisplayName("예상 방문 날짜를 입력받는다.")
     @Test
-    void inputNumber() throws Exception {
+    void inputExpectedVisitDate() throws Exception {
         // Given
         String validInputValue = "25";
         int expectedValue = Integer.parseInt(validInputValue);
-        Scanner scanner = new Scanner(setTestConsole(validInputValue));
+        InputView inputView = new InputView(setTestConsole(validInputValue));
 
         // When
-        int inputNumber = scanner.inputNumber();
+        int inputNumber = inputView.inputExpectedVisitDate();
 
         // Then
         assertThat(inputNumber).isEqualTo(expectedValue);
@@ -32,15 +32,15 @@ class ScannerTest {
         return () -> input;
     }
 
-    @DisplayName("정수 외 값을 입력하면 예외가 발생한다.")
+    @DisplayName("정수가 아닌 날짜가 입력되면 예외가 발생한다.")
     @MethodSource("invalidInputValues")
     @ParameterizedTest(name = "[{index}] \"{0}\" => Throw Exception")
     void inputNotNumberValue(String invalidInputValue) throws Exception {
         // Given
-        Scanner scanner = new Scanner(setTestConsole(invalidInputValue));
+        InputView inputView = new InputView(setTestConsole(invalidInputValue));
 
         // When & Then
-        assertThatThrownBy(scanner::inputNumber)
+        assertThatThrownBy(inputView::inputExpectedVisitDate)
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("입력값이 정수가 아닙니다.");
     }

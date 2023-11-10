@@ -1,4 +1,4 @@
-package christmas.domain.scanner.console;
+package christmas.domain.console;
 
 public class ProductionConsole implements Console {
 
