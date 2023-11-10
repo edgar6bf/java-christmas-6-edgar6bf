@@ -2,8 +2,12 @@ package christmas.domain.order;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.List;
+import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -71,5 +75,31 @@ class OrderMenusTest {
         assertThatThrownBy(() -> new OrderMenus(inputOrderMenus))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("유효하지 않은 총주문 메뉴 개수입니다.");
+    }
+
+    @DisplayName("총주문 금액이 입력된 가격 이상인지 검사한다.")
+    @MethodSource("priceAndResult")
+    @ParameterizedTest(name = "[{index}] \"{0}원\" => {1}")
+    void hasOverOrEqualTotalPrice(int price, boolean result) throws Exception {
+        // Given
+        OrderMenus orderMenus = new OrderMenus(
+                List.of(
+                        new OrderMenu("제로콜라", 5),
+                        new OrderMenu("티본스테이크", 1)
+                )
+        );
+
+        // When
+        boolean isOverOrEqualTotalPrice = orderMenus.hasOverOrEqualTotalPrice(price);
+
+        // Then
+        assertThat(isOverOrEqualTotalPrice).isEqualTo(result);
+    }
+
+    private static Stream<Arguments> priceAndResult() {
+        return Stream.of(
+                Arguments.of(10000, true),
+                Arguments.of(500000, false)
+        );
     }
 }

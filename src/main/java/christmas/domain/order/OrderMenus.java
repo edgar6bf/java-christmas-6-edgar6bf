@@ -53,4 +53,14 @@ public class OrderMenus {
             throw new IllegalArgumentException("유효하지 않은 총주문 메뉴 개수입니다.");
         }
     }
+
+    public boolean hasOverOrEqualTotalPrice(int price) {
+        return countTotalPrice() >= price;
+    }
+
+    private int countTotalPrice() {
+        return orderMenus.stream()
+                .mapToInt(OrderMenu::calculateMenuPrice)
+                .sum();
+    }
 }

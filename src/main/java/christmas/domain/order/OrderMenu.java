@@ -37,4 +37,8 @@ public class OrderMenu {
     public int getMenuCount() {
         return count;
     }
+
+    public int calculateMenuPrice() {
+        return menu.getPrice() * count;
+    }
 }

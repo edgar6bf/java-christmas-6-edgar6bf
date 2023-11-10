@@ -65,4 +65,18 @@ class OrderMenuTest {
     private static Stream<Integer> invalidMenuCounts() {
         return Stream.of(-1, -2, 0, 21, 12312, 232323232);
     }
+
+    @DisplayName("주문 메뉴의 총가격을 계산한다.")
+    @Test
+    void calculateTotalPrice() throws Exception {
+        // Given
+        OrderMenu orderMenu = new OrderMenu("타파스", 3);
+        int expected = 16500;
+
+        // When
+        int totalPrice = orderMenu.calculateMenuPrice();
+
+        // Then
+        assertThat(totalPrice).isEqualTo(expected);
+    }
 }

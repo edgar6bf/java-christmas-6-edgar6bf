@@ -17,4 +17,12 @@ public class OrderDate {
             throw new IllegalArgumentException("유효하지 않은 날짜입니다.");
         }
     }
+
+    public boolean isOrderDateInclude(int startDate, int endDate) {
+        return date >= startDate && date <= endDate;
+    }
+
+    public int calculateDateDifference(int date) {
+        return date - this.date;
+    }
 }
