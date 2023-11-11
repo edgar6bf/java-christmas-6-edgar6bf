@@ -39,7 +39,8 @@ class PromotionTest {
                 arguments(new ChristmasDdayDiscountPromotion(), new OrderDate(23), CHRISTMAS_DDAY_DISCOUNT.getTitle()),
                 arguments(new WeekdayDiscountPromotion(), new OrderDate(3), WEEKDAY_DISCOUNT.getTitle()),
                 arguments(new WeekendDiscountPromotion(), new OrderDate(2), WEEKEND_DISCOUNT.getTitle()),
-                arguments(new SpecialDiscountPromotion(), new OrderDate(3), SPECIAL_DISCOUNT.getTitle())
+                arguments(new SpecialDiscountPromotion(), new OrderDate(3), SPECIAL_DISCOUNT.getTitle()),
+                arguments(new GiveawayPromotion(), new OrderDate(3), GIVEAWAY.getTitle())
         );
     }
 
