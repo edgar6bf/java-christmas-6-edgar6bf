@@ -37,7 +37,7 @@ class OrderMenuTest {
         // When & Then
         assertThatThrownBy(() -> new OrderMenu(invalidMenuName, orderCount))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("유효하지 않은 메뉴입니다.");
+                .hasMessage("유효하지 않은 메뉴 이름입니다.");
     }
 
     private static Stream<String> invalidMenuNames() {
