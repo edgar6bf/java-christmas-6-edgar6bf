@@ -5,19 +5,21 @@ import org.junit.jupiter.api.Test;
 
 import static christmas.constant.Giveaway.CHAMPAGNE;
 import static christmas.constant.Giveaway.NO_GIVEAWAY;
+import static christmas.constant.PromotionTitle.CHRISTMAS_DDAY_DISCOUNT;
+import static christmas.constant.PromotionTitle.NO_PROMOTION;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class PromotionBenefitsTest {
 
-    @DisplayName("할인 가격과 증정품을 입력하면 PromotionBenefits가 생성된다.")
+    @DisplayName("PromotionBenefits이 생성된다.")
     @Test
     void createPromotionBenefits() throws Exception {
         // Given
         int discountPrice = 2000;
 
         // When
-        PromotionBenefits promotionBenefits = new PromotionBenefits(discountPrice, CHAMPAGNE);
+        PromotionBenefits promotionBenefits = new PromotionBenefits(CHRISTMAS_DDAY_DISCOUNT, discountPrice, CHAMPAGNE);
 
         // Then
         assertThat(promotionBenefits).isNotNull();
@@ -30,7 +32,7 @@ class PromotionBenefitsTest {
         int discountPrice = -2000;
 
         // When & Then
-        assertThatThrownBy(() -> new PromotionBenefits(discountPrice, CHAMPAGNE))
+        assertThatThrownBy(() -> new PromotionBenefits(CHRISTMAS_DDAY_DISCOUNT, discountPrice, CHAMPAGNE))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("유효하지 않은 할인 가격 입니다.");
     }
@@ -39,7 +41,7 @@ class PromotionBenefitsTest {
     @Test
     void noBenefitsReturnFalse() throws Exception {
         // Given
-        PromotionBenefits promotionBenefits = new PromotionBenefits(0, NO_GIVEAWAY);
+        PromotionBenefits promotionBenefits = new PromotionBenefits(NO_PROMOTION, 0, NO_GIVEAWAY);
 
         // When
         boolean hasBenefits = promotionBenefits.hasBenefits();

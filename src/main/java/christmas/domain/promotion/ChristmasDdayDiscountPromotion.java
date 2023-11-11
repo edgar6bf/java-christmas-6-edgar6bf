@@ -3,7 +3,9 @@ package christmas.domain.promotion;
 import christmas.domain.order.OrderDate;
 import christmas.domain.order.OrderMenus;
 
-import static christmas.constant.Giveaway.*;
+import static christmas.constant.Giveaway.NO_GIVEAWAY;
+import static christmas.constant.PromotionTitle.CHRISTMAS_DDAY_DISCOUNT;
+import static christmas.constant.PromotionTitle.NO_PROMOTION;
 
 public class ChristmasDdayDiscountPromotion implements Promotion {
 
@@ -17,7 +19,7 @@ public class ChristmasDdayDiscountPromotion implements Promotion {
     @Override
     public PromotionBenefits applyPromotion(OrderDate orderDate, OrderMenus orderMenus) {
         if (!isAvailableCondition(orderDate, orderMenus)) {
-            return new PromotionBenefits(NOT_DISCOUNT_PRICE, NO_GIVEAWAY);
+            return new PromotionBenefits(NO_PROMOTION, NOT_DISCOUNT_PRICE, NO_GIVEAWAY);
         }
 
         return createBenefits(orderDate);
@@ -39,6 +41,7 @@ public class ChristmasDdayDiscountPromotion implements Promotion {
         int discountPrice = MAXIMUM_DISCOUNT_PRICE - (ONE_DATE_DISCOUNT_PRICE * orderDate.calculateDateDifference(PROMOTION_END_DATE));
 
         return new PromotionBenefits(
+                CHRISTMAS_DDAY_DISCOUNT,
                 discountPrice,
                 NO_GIVEAWAY
         );

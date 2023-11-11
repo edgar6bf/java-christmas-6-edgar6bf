@@ -1,18 +1,22 @@
 package christmas.domain.promotion;
 
 import christmas.constant.Giveaway;
+import christmas.constant.PromotionTitle;
 
-import static christmas.constant.Giveaway.*;
+import static christmas.constant.Giveaway.NO_GIVEAWAY;
+import static christmas.constant.PromotionTitle.NO_PROMOTION;
 
 public class PromotionBenefits {
 
     private static final int ZERO_DISCOUNT_PRICE = 0;
 
+    private final PromotionTitle promotionTitle;
     private final int discountPrice;
     private final Giveaway giveaway;
 
-    public PromotionBenefits(int discountPrice, Giveaway giveaway) {
+    public PromotionBenefits(PromotionTitle promotionTitle, int discountPrice, Giveaway giveaway) {
         validateDiscountPrice(discountPrice);
+        this.promotionTitle = promotionTitle;
         this.discountPrice = discountPrice;
         this.giveaway = giveaway;
     }
@@ -32,6 +36,8 @@ public class PromotionBenefits {
     }
 
     public boolean hasBenefits() {
-        return discountPrice > ZERO_DISCOUNT_PRICE && giveaway != NO_GIVEAWAY;
+        return promotionTitle != NO_PROMOTION
+                && discountPrice > ZERO_DISCOUNT_PRICE
+                && giveaway != NO_GIVEAWAY;
     }
 }
