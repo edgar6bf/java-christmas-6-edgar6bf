@@ -18,7 +18,7 @@ import static org.junit.jupiter.params.provider.Arguments.arguments;
 @DisplayName("[Promotion] : 이벤트 공통 테스트")
 class PromotionTest {
 
-    @DisplayName("10000원 미만의 주문 메뉴 목록을 입력하면 할인 혜택을 받을 수 없다.")
+    @DisplayName("이벤트에서 지정한 조건 금액보다 낮은 총주문 금액의 주문 목록을 입력하면 할인 혜택을 받을 수 없다.")
     @MethodSource("promotionsAndValidOrderDates")
     @ParameterizedTest(name = "[{index}] {2} 테스트")
     void applyPromotionWithUnderMinimumTotalPrice(Promotion promotion, OrderDate orderDate, String promotionTitle) throws Exception {
