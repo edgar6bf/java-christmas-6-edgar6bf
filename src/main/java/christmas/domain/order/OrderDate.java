@@ -1,5 +1,7 @@
 package christmas.domain.order;
 
+import java.util.List;
+
 public class OrderDate {
 
     private static final int START_DATE = 1;
@@ -20,6 +22,10 @@ public class OrderDate {
 
     public boolean isOrderDateInclude(int startDate, int endDate) {
         return date >= startDate && date <= endDate;
+    }
+
+    public boolean isOrderDateInclude(List<Integer> dates) {
+        return dates.contains(date);
     }
 
     public int calculateDateDifference(int date) {

@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.stream.Stream;
 
 import static christmas.constant.PromotionTitle.CHRISTMAS_DDAY_DISCOUNT;
+import static christmas.constant.PromotionTitle.WEEKDAY_DISCOUNT;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
 
@@ -35,7 +36,8 @@ class PromotionTest {
 
     private static Stream<Arguments> promotionsAndValidOrderDates() {
         return Stream.of(
-                arguments(new ChristmasDdayDiscountPromotion(), new OrderDate(23), CHRISTMAS_DDAY_DISCOUNT.getTitle())
+                arguments(new ChristmasDdayDiscountPromotion(), new OrderDate(23), CHRISTMAS_DDAY_DISCOUNT.getTitle()),
+                arguments(new WeekdayDiscountPromotion(), new OrderDate(3), WEEKDAY_DISCOUNT.getTitle())
         );
     }
 
@@ -60,7 +62,8 @@ class PromotionTest {
 
     private static Stream<Arguments> promotionsAndInvalidOrderDates() {
         return Stream.of(
-                arguments(new ChristmasDdayDiscountPromotion(), new OrderDate(28), CHRISTMAS_DDAY_DISCOUNT.getTitle())
+                arguments(new ChristmasDdayDiscountPromotion(), new OrderDate(28), CHRISTMAS_DDAY_DISCOUNT.getTitle()),
+                arguments(new WeekdayDiscountPromotion(), new OrderDate(1), WEEKDAY_DISCOUNT.getTitle())
         );
     }
 }

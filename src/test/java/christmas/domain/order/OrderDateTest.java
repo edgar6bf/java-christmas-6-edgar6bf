@@ -6,6 +6,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import java.util.List;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.*;
@@ -77,5 +78,19 @@ class OrderDateTest {
 
         // Then
         assertThat(difference).isEqualTo(expected);
+    }
+
+    @DisplayName("입력된 날짜 목록에 주문 날짜가 포함되는지 검사한다.")
+    @Test
+    void isOrderDateIncludeInDates() throws Exception {
+        // Given
+        OrderDate orderDate = new OrderDate(23);
+        List<Integer> dates = List.of(1, 3, 5, 23);
+
+        // When
+        boolean isOrderDateInclude = orderDate.isOrderDateInclude(dates);
+
+        // Then
+        assertThat(isOrderDateInclude).isEqualTo(true);
     }
 }
