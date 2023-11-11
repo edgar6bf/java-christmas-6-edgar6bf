@@ -14,15 +14,14 @@ public class OrderMenu {
     private final int orderCount;
 
     public OrderMenu(String menu, int orderCount) {
-        this.menu = parseMenu(menu);
-
         validateOrderCount(orderCount);
+        this.menu = convertMenuNameToMenu(menu);
         this.orderCount = orderCount;
     }
 
     private void validateOrderCount(int orderCount) {
         if (orderCount < MINIMUM_AVAILABLE_COUNT || orderCount > MAXIMUM_AVAILABLE_COUNT) {
-            throw new IllegalArgumentException("유효하지 않은 메뉴 개수입니다.");
+            throw new IllegalArgumentException("유효하지 않은 주문 개수입니다.");
         }
     }
 
