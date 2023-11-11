@@ -11,6 +11,7 @@ import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.*;
 
+@DisplayName("[OrderDate] : 주문 날짜 테스트")
 class OrderDateTest {
 
     @DisplayName("유효한 범위 내 날짜를 입력하면 OrderDate가 생성된다.")

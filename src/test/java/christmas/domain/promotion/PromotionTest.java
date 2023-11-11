@@ -16,6 +16,7 @@ import static christmas.constant.PromotionTitle.WEEKDAY_DISCOUNT;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
 
+@DisplayName("[Promotion] : 이벤트 공통 테스트")
 class PromotionTest {
 
     @DisplayName("10000원 미만의 주문 메뉴 목록을 입력하면 할인 혜택을 받을 수 없다.")

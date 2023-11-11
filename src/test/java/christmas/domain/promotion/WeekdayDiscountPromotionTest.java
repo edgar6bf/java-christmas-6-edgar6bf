@@ -16,6 +16,7 @@ import static christmas.constant.Giveaway.NO_GIVEAWAY;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
 
+@DisplayName("[WeekdayDiscountPromotion] : 평일 할인 테스트")
 class WeekdayDiscountPromotionTest {
 
     @DisplayName("디저트 메뉴 1개당 2,023원 할인한다.")

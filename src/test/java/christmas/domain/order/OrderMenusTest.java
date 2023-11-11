@@ -14,6 +14,7 @@ import static christmas.constant.MenuCategory.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+@DisplayName("[OrderMenus] : 주문 메뉴 목록 테스트")
 class OrderMenusTest {
 
     @DisplayName("주문 메뉴 목록을 입력하면 OrderMenus를 생성한다.")

@@ -13,6 +13,7 @@ import java.util.stream.Stream;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+@DisplayName("[InputView] : 사용자 입력 테스트")
 class InputViewTest {
 
     @DisplayName("예상 방문 날짜를 입력받는다.")

@@ -10,6 +10,7 @@ import static christmas.constant.PromotionTitle.NO_PROMOTION;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+@DisplayName("[PromotionBenefits] : 이벤트 혜택 테스트")
 class PromotionBenefitsTest {
 
     @DisplayName("PromotionBenefits이 생성된다.")

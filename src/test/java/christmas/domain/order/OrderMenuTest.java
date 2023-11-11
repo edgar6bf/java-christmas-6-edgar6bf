@@ -10,6 +10,7 @@ import java.util.stream.Stream;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+@DisplayName("[OrderMenu] : 주문 메뉴 테스트")
 class OrderMenuTest {
 
     @DisplayName("메뉴 이름과 주문 개수를 입력하면 OrderMenu가 생성된다.")
