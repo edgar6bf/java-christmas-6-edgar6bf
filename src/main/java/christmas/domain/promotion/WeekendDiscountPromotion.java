@@ -13,14 +13,19 @@ import static christmas.constant.PromotionTitle.WEEKEND_DISCOUNT;
 public class WeekendDiscountPromotion implements Promotion {
 
     private static final int MINIMUM_VALID_TOTAL_ORDER_PRICE = 10000;
-    private static final int NOT_DISCOUNT_PRICE = 0;
+    private static final int ZERO_VALUE = 0;
     private static final int DISCOUNT_PRICE = 2023;
     private static final List<Integer> applicablePromotionDates = List.of(1, 2, 8, 9, 15, 16, 22, 23, 29, 30);
 
     @Override
     public PromotionBenefits applyPromotion(OrderDate orderDate, OrderMenus orderMenus) {
         if (!isAvailableCondition(orderDate, orderMenus)) {
-            return new PromotionBenefits(NO_PROMOTION, NOT_DISCOUNT_PRICE, NO_GIVEAWAY);
+            return new PromotionBenefits(
+                    NO_PROMOTION,
+                    ZERO_VALUE,
+                    NO_GIVEAWAY,
+                    ZERO_VALUE
+            );
         }
 
         return createBenefits(orderMenus);
@@ -50,7 +55,8 @@ public class WeekendDiscountPromotion implements Promotion {
         return new PromotionBenefits(
                 WEEKEND_DISCOUNT,
                 DISCOUNT_PRICE * mainMenuCount,
-                NO_GIVEAWAY
+                NO_GIVEAWAY,
+                ZERO_VALUE
         );
     }
 }

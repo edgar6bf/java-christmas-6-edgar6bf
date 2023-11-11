@@ -12,14 +12,19 @@ public class ChristmasDdayDiscountPromotion implements Promotion {
     private static final int MINIMUM_VALID_TOTAL_ORDER_PRICE = 10000;
     private static final int PROMOTION_START_DATE = 1;
     private static final int PROMOTION_END_DATE = 25;
-    private static final int NOT_DISCOUNT_PRICE = 0;
+    private static final int ZERO_VALUE = 0;
     private static final int MAXIMUM_DISCOUNT_PRICE = 3400;
     private static final int ONE_DATE_DISCOUNT_PRICE = 100;
 
     @Override
     public PromotionBenefits applyPromotion(OrderDate orderDate, OrderMenus orderMenus) {
         if (!isAvailableCondition(orderDate, orderMenus)) {
-            return new PromotionBenefits(NO_PROMOTION, NOT_DISCOUNT_PRICE, NO_GIVEAWAY);
+            return new PromotionBenefits(
+                    NO_PROMOTION,
+                    ZERO_VALUE,
+                    NO_GIVEAWAY,
+                    ZERO_VALUE
+            );
         }
 
         return createBenefits(orderDate);
@@ -43,7 +48,8 @@ public class ChristmasDdayDiscountPromotion implements Promotion {
         return new PromotionBenefits(
                 CHRISTMAS_DDAY_DISCOUNT,
                 discountPrice,
-                NO_GIVEAWAY
+                NO_GIVEAWAY,
+                ZERO_VALUE
         );
     }
 }
