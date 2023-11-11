@@ -24,10 +24,10 @@ class ChristmasDdayDiscountPromotionTest {
         // Given
         OrderDate orderDate = new OrderDate(date);
         OrderMenus orderMenus = new OrderMenus(List.of(new OrderMenu("타파스", 4)));
-        Promotion promotion = new ChristmasDdayDiscountPromotion();
+        ChristmasDdayDiscountPromotion christmasDdayDiscountPromotion = new ChristmasDdayDiscountPromotion();
 
         // When
-        PromotionBenefits promotionBenefits = promotion.applyPromotion(orderDate, orderMenus);
+        PromotionBenefits promotionBenefits = christmasDdayDiscountPromotion.applyPromotion(orderDate, orderMenus);
 
         // Then
         assertThat(promotionBenefits.getDiscountPrice()).isEqualTo(discountPrice);

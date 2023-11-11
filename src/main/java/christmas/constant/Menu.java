@@ -29,14 +29,14 @@ public enum Menu {
         this.category = category;
     }
 
-    public static Menu parseMenu(String menuName) {
+    public static Menu convertMenuNameToMenu(String menuName) {
         ArrayList<Menu> menus = new ArrayList<>(Arrays.asList(Menu.values()));
 
         return menus
                 .stream()
                 .filter(menu -> menu.getName().equals(menuName))
                 .findAny()
-                .orElseThrow(() -> new IllegalArgumentException("유효하지 않은 메뉴입니다."));
+                .orElseThrow(() -> new IllegalArgumentException("유효하지 않은 메뉴 이름입니다."));
     }
 
     public boolean hasCategory(MenuCategory category) {

@@ -34,7 +34,7 @@ public class ChristmasDdayDiscountPromotion implements Promotion {
     }
 
     private boolean isValidTotalOrderPrice(OrderMenus orderMenus) {
-        return orderMenus.hasOverOrEqualTotalPrice(MINIMUM_VALID_TOTAL_ORDER_PRICE);
+        return orderMenus.hasOverOrEqualTotalOrderPrice(MINIMUM_VALID_TOTAL_ORDER_PRICE);
     }
 
     private PromotionBenefits createBenefits(OrderDate orderDate) {
