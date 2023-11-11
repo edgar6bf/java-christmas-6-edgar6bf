@@ -11,17 +11,17 @@ public class OrderMenu {
     private static final int MAXIMUM_AVAILABLE_COUNT = 20;
 
     private final Menu menu;
-    private final int count;
+    private final int orderCount;
 
-    public OrderMenu(String menu, int count) {
+    public OrderMenu(String menu, int orderCount) {
         this.menu = parseMenu(menu);
 
-        validateCount(count);
-        this.count = count;
+        validateOrderCount(orderCount);
+        this.orderCount = orderCount;
     }
 
-    private void validateCount(int count) {
-        if (count < MINIMUM_AVAILABLE_COUNT || count > MAXIMUM_AVAILABLE_COUNT) {
+    private void validateOrderCount(int orderCount) {
+        if (orderCount < MINIMUM_AVAILABLE_COUNT || orderCount > MAXIMUM_AVAILABLE_COUNT) {
             throw new IllegalArgumentException("유효하지 않은 메뉴 개수입니다.");
         }
     }
@@ -34,11 +34,11 @@ public class OrderMenu {
         return menu.getName();
     }
 
-    public int getMenuCount() {
-        return count;
+    public int getOrderCount() {
+        return orderCount;
     }
 
-    public int calculateMenuPrice() {
-        return menu.getPrice() * count;
+    public int calculateTotalOrderPrice() {
+        return menu.getPrice() * orderCount;
     }
 }
