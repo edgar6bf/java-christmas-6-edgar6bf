@@ -12,29 +12,30 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class OrderMenuTest {
 
-    @DisplayName("메뉴 명과 개수를 입력하면 OrderMenu가 생성된다.")
+    @DisplayName("메뉴 이름과 주문 개수를 입력하면 OrderMenu가 생성된다.")
     @Test
     void createOrderMenu() throws Exception {
         // Given
         String menuName = "바비큐립";
-        int menuCount = 2;
+        int orderCount = 2;
 
         // When
-        OrderMenu orderMenu = new OrderMenu(menuName, menuCount);
+        OrderMenu orderMenu = new OrderMenu(menuName, orderCount);
 
         // Then
-        assertThat(orderMenu).isNotNull();
+        assertThat(orderMenu.getMenuName()).isEqualTo(menuName);
+        assertThat(orderMenu.getOrderCount()).isEqualTo(orderCount);
     }
 
-    @DisplayName("유효하지 않은 메뉴 명이 입력되면 예외가 발생한다.")
+    @DisplayName("유효하지 않은 메뉴 이름이 입력되면 예외가 발생한다.")
     @MethodSource("invalidMenuNames")
     @ParameterizedTest(name = "[{index}] \"{0}\" => Throw Exception")
     void createOrderMenuWithInvalidMenuName(String invalidMenuName) throws Exception {
         // Given
-        int menuCount = 3;
+        int orderCount = 3;
 
         // When & Then
-        assertThatThrownBy(() -> new OrderMenu(invalidMenuName, menuCount))
+        assertThatThrownBy(() -> new OrderMenu(invalidMenuName, orderCount))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("유효하지 않은 메뉴입니다.");
     }
@@ -49,34 +50,34 @@ class OrderMenuTest {
         );
     }
 
-    @DisplayName("유효하지 않은 메뉴 개수가 입력되면 예외가 발생한다.")
-    @MethodSource("invalidMenuCounts")
+    @DisplayName("유효하지 않은 주문 개수가 입력되면 예외가 발생한다.")
+    @MethodSource("invalidOrderCounts")
     @ParameterizedTest(name = "[{index}] \"{0}\" => Throw Exception")
-    void createOrderMenuWithInvalidMenuCount(int invalidMenuCount) throws Exception {
+    void createOrderMenuWithInvalidOrderCount(int invalidOrderCount) throws Exception {
         // Given
         String menuName = "제로콜라";
 
         // When & Then
-        assertThatThrownBy(() -> new OrderMenu(menuName, invalidMenuCount))
+        assertThatThrownBy(() -> new OrderMenu(menuName, invalidOrderCount))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("유효하지 않은 메뉴 개수입니다.");
+                .hasMessage("유효하지 않은 주문 개수입니다.");
     }
 
-    private static Stream<Integer> invalidMenuCounts() {
+    private static Stream<Integer> invalidOrderCounts() {
         return Stream.of(-1, -2, 0, 21, 12312, 232323232);
     }
 
-    @DisplayName("주문 메뉴의 총가격을 계산한다.")
+    @DisplayName("총주문 가격을 계산한다.")
     @Test
-    void calculateTotalPrice() throws Exception {
+    void calculateTotalOrderPrice() throws Exception {
         // Given
         OrderMenu orderMenu = new OrderMenu("타파스", 3);
         int expected = 16500;
 
         // When
-        int totalPrice = orderMenu.calculateMenuPrice();
+        int totalOrderPrice = orderMenu.calculateTotalOrderPrice();
 
         // Then
-        assertThat(totalPrice).isEqualTo(expected);
+        assertThat(totalOrderPrice).isEqualTo(expected);
     }
 }
