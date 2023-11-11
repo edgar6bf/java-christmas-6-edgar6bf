@@ -2,7 +2,7 @@ package christmas.constant;
 
 public enum Giveaway {
     CHAMPAGNE("샴페인", 25000),
-    NO_GIVEAWAY("증정품 없음", 0);
+    NO_GIVEAWAY("없음", 0);
 
     private final String name;
     private final int price;
