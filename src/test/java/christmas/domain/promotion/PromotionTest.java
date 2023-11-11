@@ -38,7 +38,8 @@ class PromotionTest {
         return Stream.of(
                 arguments(new ChristmasDdayDiscountPromotion(), new OrderDate(23), CHRISTMAS_DDAY_DISCOUNT.getTitle()),
                 arguments(new WeekdayDiscountPromotion(), new OrderDate(3), WEEKDAY_DISCOUNT.getTitle()),
-                arguments(new WeekendDiscountPromotion(), new OrderDate(2), WEEKEND_DISCOUNT.getTitle())
+                arguments(new WeekendDiscountPromotion(), new OrderDate(2), WEEKEND_DISCOUNT.getTitle()),
+                arguments(new SpecialDiscountPromotion(), new OrderDate(3), SPECIAL_DISCOUNT.getTitle())
         );
     }
 
@@ -65,7 +66,8 @@ class PromotionTest {
         return Stream.of(
                 arguments(new ChristmasDdayDiscountPromotion(), new OrderDate(28), CHRISTMAS_DDAY_DISCOUNT.getTitle()),
                 arguments(new WeekdayDiscountPromotion(), new OrderDate(1), WEEKDAY_DISCOUNT.getTitle()),
-                arguments(new WeekendDiscountPromotion(), new OrderDate(3), WEEKEND_DISCOUNT.getTitle())
+                arguments(new WeekendDiscountPromotion(), new OrderDate(3), WEEKEND_DISCOUNT.getTitle()),
+                arguments(new SpecialDiscountPromotion(), new OrderDate(4), SPECIAL_DISCOUNT.getTitle())
         );
     }
 }
