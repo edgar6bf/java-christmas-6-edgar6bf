@@ -69,7 +69,7 @@ class PromotionBenefitsTest {
     @DisplayName("프로모션 혜택 내역을 반환한다.")
     @MethodSource("promotionBenefitsAndHistories")
     @ParameterizedTest(name = "[{index}] \"{4}\"")
-    void checkPromotionBenefitHistory(PromotionTitle promotionTitle, DiscountAmount discountAmount, Giveaway giveaway, PromotionBenefitHistory expected, String description) throws Exception {
+    void getPromotionBenefitHistory(PromotionTitle promotionTitle, DiscountAmount discountAmount, Giveaway giveaway, PromotionBenefitHistory expected, String description) throws Exception {
         // Given
         PromotionBenefits promotionBenefits = new PromotionBenefits(
                 promotionTitle,
@@ -78,7 +78,7 @@ class PromotionBenefitsTest {
         );
 
         // When
-        PromotionBenefitHistory promotionBenefitHistory = promotionBenefits.checkPromotionBenefitHistory();
+        PromotionBenefitHistory promotionBenefitHistory = promotionBenefits.getPromotionBenefitHistory();
 
         // Then
         assertThat(promotionBenefitHistory).isEqualTo(expected);

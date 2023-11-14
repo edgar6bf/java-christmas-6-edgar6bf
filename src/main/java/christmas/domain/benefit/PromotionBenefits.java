@@ -20,10 +20,10 @@ public class PromotionBenefits {
         return discountAmount.applicableDiscount() || giveaway.hasGiveaway();
     }
 
-    public PromotionBenefitHistory checkPromotionBenefitHistory() {
-        int benefitsAmount = discountAmount.getBenefitAmount() + giveaway.getBenefitAmount();
+    public PromotionBenefitHistory getPromotionBenefitHistory() {
+        int totalBenefitAmount = discountAmount.getBenefitAmount() + giveaway.getBenefitAmount();
 
-        return PromotionBenefitHistory.of(promotionTitle.getTitle(), benefitsAmount);
+        return PromotionBenefitHistory.of(promotionTitle.getTitle(), totalBenefitAmount);
     }
 
     public int applyBenefit(int price) {

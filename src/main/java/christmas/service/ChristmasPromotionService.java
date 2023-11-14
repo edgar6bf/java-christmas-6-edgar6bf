@@ -48,7 +48,7 @@ public class ChristmasPromotionService {
     private int calculateTotalBenefitAmount(List<PromotionBenefits> promotionBenefits) {
         return promotionBenefits.stream()
                 .mapToInt(
-                        promotionBenefit -> promotionBenefit.checkPromotionBenefitHistory()
+                        promotionBenefit -> promotionBenefit.getPromotionBenefitHistory()
                                 .benefitAmount()
                 )
                 .sum();
@@ -63,7 +63,7 @@ public class ChristmasPromotionService {
 
     private List<PromotionBenefitHistory> parseBenefitHistories(List<PromotionBenefits> promotionBenefits) {
         return promotionBenefits.stream()
-                .map(PromotionBenefits::checkPromotionBenefitHistory)
+                .map(PromotionBenefits::getPromotionBenefitHistory)
                 .toList();
     }
 
