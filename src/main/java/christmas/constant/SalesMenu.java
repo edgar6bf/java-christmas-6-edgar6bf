@@ -28,15 +28,11 @@ public enum SalesMenu {
         this.category = category;
     }
 
-    public static SalesMenu convertMenuNameToMenu(String menuName) {
+    public static SalesMenu of(String menuName) {
         return Arrays.stream(SalesMenu.values())
                 .filter(salesMenu -> salesMenu.getName().equals(menuName))
                 .findAny()
                 .orElseThrow(() -> new IllegalArgumentException("유효하지 않은 메뉴 이름입니다."));
-    }
-
-    public boolean hasCategory(MenuCategory category) {
-        return this.category == category;
     }
 
     public String getName() {

@@ -3,8 +3,6 @@ package christmas.domain.order;
 import christmas.constant.SalesMenu;
 import christmas.constant.MenuCategory;
 
-import static christmas.constant.SalesMenu.*;
-
 public class OrderMenu {
 
     private static final int MINIMUM_AVAILABLE_COUNT = 1;
@@ -15,7 +13,7 @@ public class OrderMenu {
 
     public OrderMenu(String menu, int orderCount) {
         validateOrderCount(orderCount);
-        this.salesMenu = convertMenuNameToMenu(menu);
+        this.salesMenu = SalesMenu.of(menu);
         this.orderCount = orderCount;
     }
 
@@ -26,7 +24,7 @@ public class OrderMenu {
     }
 
     public boolean checkMenuCategory(MenuCategory category) {
-        return salesMenu.hasCategory(category);
+        return salesMenu.getCategory() == category;
     }
 
     public String getMenuName() {
