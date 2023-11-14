@@ -9,7 +9,6 @@ import christmas.domain.order.OrderMenus;
 import java.util.List;
 
 import static christmas.constant.GiveawayMenu.NO_GIVEAWAY;
-import static christmas.constant.PromotionTitle.NO_PROMOTION;
 import static christmas.constant.PromotionTitle.SPECIAL_DISCOUNT;
 
 public class SpecialDiscountPromotion implements Promotion {
@@ -22,11 +21,7 @@ public class SpecialDiscountPromotion implements Promotion {
     @Override
     public PromotionBenefits applyPromotion(OrderDate orderDate, OrderMenus orderMenus) {
         if (!isAvailableCondition(orderDate, orderMenus)) {
-            return new PromotionBenefits(
-                    NO_PROMOTION,
-                    new DiscountAmount(ZERO_VALUE),
-                    new Giveaway(NO_GIVEAWAY, ZERO_VALUE)
-            );
+            return noPromotion();
         }
 
         return createBenefits();

@@ -7,9 +7,7 @@ import christmas.domain.order.OrderDate;
 import christmas.domain.order.OrderMenus;
 
 import static christmas.constant.GiveawayMenu.CHAMPAGNE;
-import static christmas.constant.GiveawayMenu.NO_GIVEAWAY;
 import static christmas.constant.PromotionTitle.GIVEAWAY;
-import static christmas.constant.PromotionTitle.NO_PROMOTION;
 
 public class GiveawayPromotion implements Promotion {
 
@@ -22,11 +20,7 @@ public class GiveawayPromotion implements Promotion {
     @Override
     public PromotionBenefits applyPromotion(OrderDate orderDate, OrderMenus orderMenus) {
         if (!isAvailableCondition(orderDate, orderMenus)) {
-            return new PromotionBenefits(
-                    NO_PROMOTION,
-                    new DiscountAmount(ZERO_VALUE),
-                    new Giveaway(NO_GIVEAWAY, ZERO_VALUE)
-            );
+            return noPromotion();
         }
 
         return createBenefits(orderMenus);

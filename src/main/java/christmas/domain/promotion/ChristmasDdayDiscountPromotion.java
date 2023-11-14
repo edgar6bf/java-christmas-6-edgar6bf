@@ -8,7 +8,6 @@ import christmas.domain.order.OrderMenus;
 
 import static christmas.constant.GiveawayMenu.NO_GIVEAWAY;
 import static christmas.constant.PromotionTitle.CHRISTMAS_DDAY_DISCOUNT;
-import static christmas.constant.PromotionTitle.NO_PROMOTION;
 
 public class ChristmasDdayDiscountPromotion implements Promotion {
 
@@ -22,11 +21,7 @@ public class ChristmasDdayDiscountPromotion implements Promotion {
     @Override
     public PromotionBenefits applyPromotion(OrderDate orderDate, OrderMenus orderMenus) {
         if (!isAvailableCondition(orderDate, orderMenus)) {
-            return new PromotionBenefits(
-                    NO_PROMOTION,
-                    new DiscountAmount(ZERO_VALUE),
-                    new Giveaway(NO_GIVEAWAY, ZERO_VALUE)
-            );
+            return noPromotion();
         }
 
         return createBenefits(orderDate);
@@ -45,7 +40,8 @@ public class ChristmasDdayDiscountPromotion implements Promotion {
     }
 
     private PromotionBenefits createBenefits(OrderDate orderDate) {
-        int discountPrice = MAXIMUM_DISCOUNT_PRICE - (ONE_DATE_DISCOUNT_PRICE * orderDate.calculateDateDifference(PROMOTION_END_DATE));
+        int discountPrice = MAXIMUM_DISCOUNT_PRICE
+                - (ONE_DATE_DISCOUNT_PRICE * orderDate.calculateDateDifference(PROMOTION_END_DATE));
 
         return new PromotionBenefits(
                 CHRISTMAS_DDAY_DISCOUNT,
