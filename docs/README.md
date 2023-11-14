@@ -7,9 +7,13 @@
 - - -
 
 ![Generic badge](https://img.shields.io/badge/precourse-week4-green.svg)
-![Generic badge](https://img.shields.io/badge/test-0_passed-blue.svg)
+![Generic badge](https://img.shields.io/badge/test-110_passed-blue.svg)
 
 > 우아한테크코스 6기 4주차 미션, 크리스마스 프로모션을 구현한 저장소입니다.
+
+<p align="center">
+    <img src="./promotion-program.gif" alt="프로그램 시연 이미지">
+</p>
 
 ## 📚 목차
 
