@@ -32,6 +32,7 @@ public class ChristmasPromotionController {
         OrderMenus orderMenus = inputOrderMenus();
 
         PromotionApplyResult promotionApplyResult = christmasPromotionService.checkPromotionBenefits(orderDate, orderMenus);
+        outputView.printPromotionBenefits(promotionApplyResult);
     }
 
     private OrderDate inputOrderDate() {
