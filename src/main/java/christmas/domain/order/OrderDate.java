@@ -31,4 +31,8 @@ public class OrderDate {
     public int calculateDateDifference(int date) {
         return date - this.date;
     }
+
+    public int getDate() {
+        return date;
+    }
 }

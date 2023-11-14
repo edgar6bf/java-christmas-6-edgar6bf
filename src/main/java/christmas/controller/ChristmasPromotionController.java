@@ -4,6 +4,8 @@ import christmas.domain.order.OrderDate;
 import christmas.domain.order.OrderMenu;
 import christmas.domain.order.OrderMenus;
 import christmas.dto.MenuNameAndCount;
+import christmas.dto.PromotionApplyResult;
+import christmas.service.ChristmasPromotionService;
 import christmas.view.InputView;
 import christmas.view.OutputView;
 
@@ -16,16 +18,20 @@ public class ChristmasPromotionController {
 
     private final InputView inputView;
     private final OutputView outputView;
+    private final ChristmasPromotionService christmasPromotionService;
 
-    public ChristmasPromotionController(InputView inputView, OutputView outputView) {
+    public ChristmasPromotionController(InputView inputView, OutputView outputView, ChristmasPromotionService christmasPromotionService) {
         this.inputView = inputView;
         this.outputView = outputView;
+        this.christmasPromotionService = christmasPromotionService;
     }
 
     public void run() {
         outputView.printProgramStartMessage();
         OrderDate orderDate = inputOrderDate();
         OrderMenus orderMenus = inputOrderMenus();
+
+        PromotionApplyResult promotionApplyResult = christmasPromotionService.checkPromotionBenefits(orderDate, orderMenus);
     }
 
     private OrderDate inputOrderDate() {

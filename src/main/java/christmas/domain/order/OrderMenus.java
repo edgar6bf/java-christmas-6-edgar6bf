@@ -1,6 +1,7 @@
 package christmas.domain.order;
 
 import christmas.constant.MenuCategory;
+import christmas.dto.MenuNameAndCount;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -82,5 +83,15 @@ public class OrderMenus {
         List<OrderMenu> orderMenusInCategory = getOrderMenusInCategory(orderMenus, category);
 
         return calculateTotalOrderCount(orderMenusInCategory);
+    }
+
+    public List<MenuNameAndCount> getOrderHistory() {
+        return orderMenus.stream()
+                .map(MenuNameAndCount::from)
+                .toList();
+    }
+
+    public int getTotalOrderPrice() {
+        return calculateTotalOrderPrice();
     }
 }
