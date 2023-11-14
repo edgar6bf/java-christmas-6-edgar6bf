@@ -1,11 +1,10 @@
 package christmas.constant;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 
 import static christmas.constant.MenuCategory.*;
 
-public enum Menu {
+public enum SalesMenu {
     MUSHROOM_SOUP("양송이수프", 6000, APPETIZER),
     TAPAS("타파스", 5500, APPETIZER),
     CAESAR_SALAD("시저샐러드", 8000, APPETIZER),
@@ -23,18 +22,15 @@ public enum Menu {
     private final int price;
     private final MenuCategory category;
 
-    Menu(String name, int price, MenuCategory category) {
+    SalesMenu(String name, int price, MenuCategory category) {
         this.name = name;
         this.price = price;
         this.category = category;
     }
 
-    public static Menu convertMenuNameToMenu(String menuName) {
-        ArrayList<Menu> menus = new ArrayList<>(Arrays.asList(Menu.values()));
-
-        return menus
-                .stream()
-                .filter(menu -> menu.getName().equals(menuName))
+    public static SalesMenu convertMenuNameToMenu(String menuName) {
+        return Arrays.stream(SalesMenu.values())
+                .filter(salesMenu -> salesMenu.getName().equals(menuName))
                 .findAny()
                 .orElseThrow(() -> new IllegalArgumentException("유효하지 않은 메뉴 이름입니다."));
     }

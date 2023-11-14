@@ -1,11 +1,14 @@
 package christmas.domain.promotion;
 
+import christmas.domain.benefit.DiscountAmount;
+import christmas.domain.benefit.Giveaway;
+import christmas.domain.benefit.PromotionBenefits;
 import christmas.domain.order.OrderDate;
 import christmas.domain.order.OrderMenus;
 
 import java.util.List;
 
-import static christmas.constant.Giveaway.NO_GIVEAWAY;
+import static christmas.constant.GiveawayMenu.NO_GIVEAWAY;
 import static christmas.constant.MenuCategory.MAIN;
 import static christmas.constant.PromotionTitle.NO_PROMOTION;
 import static christmas.constant.PromotionTitle.WEEKEND_DISCOUNT;
@@ -22,9 +25,8 @@ public class WeekendDiscountPromotion implements Promotion {
         if (!isAvailableCondition(orderDate, orderMenus)) {
             return new PromotionBenefits(
                     NO_PROMOTION,
-                    ZERO_VALUE,
-                    NO_GIVEAWAY,
-                    ZERO_VALUE
+                    new DiscountAmount(ZERO_VALUE),
+                    new Giveaway(NO_GIVEAWAY, ZERO_VALUE)
             );
         }
 
@@ -54,9 +56,8 @@ public class WeekendDiscountPromotion implements Promotion {
 
         return new PromotionBenefits(
                 WEEKEND_DISCOUNT,
-                DISCOUNT_PRICE * mainMenuCount,
-                NO_GIVEAWAY,
-                ZERO_VALUE
+                new DiscountAmount(DISCOUNT_PRICE * mainMenuCount),
+                new Giveaway(NO_GIVEAWAY, ZERO_VALUE)
         );
     }
 }

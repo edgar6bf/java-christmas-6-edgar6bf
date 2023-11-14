@@ -1,21 +1,21 @@
 package christmas.domain.order;
 
-import christmas.constant.Menu;
+import christmas.constant.SalesMenu;
 import christmas.constant.MenuCategory;
 
-import static christmas.constant.Menu.*;
+import static christmas.constant.SalesMenu.*;
 
 public class OrderMenu {
 
     private static final int MINIMUM_AVAILABLE_COUNT = 1;
     private static final int MAXIMUM_AVAILABLE_COUNT = 20;
 
-    private final Menu menu;
+    private final SalesMenu salesMenu;
     private final int orderCount;
 
     public OrderMenu(String menu, int orderCount) {
         validateOrderCount(orderCount);
-        this.menu = convertMenuNameToMenu(menu);
+        this.salesMenu = convertMenuNameToMenu(menu);
         this.orderCount = orderCount;
     }
 
@@ -26,11 +26,11 @@ public class OrderMenu {
     }
 
     public boolean checkMenuCategory(MenuCategory category) {
-        return menu.hasCategory(category);
+        return salesMenu.hasCategory(category);
     }
 
     public String getMenuName() {
-        return menu.getName();
+        return salesMenu.getName();
     }
 
     public int getOrderCount() {
@@ -38,6 +38,6 @@ public class OrderMenu {
     }
 
     public int calculateTotalOrderPrice() {
-        return menu.getPrice() * orderCount;
+        return salesMenu.getPrice() * orderCount;
     }
 }

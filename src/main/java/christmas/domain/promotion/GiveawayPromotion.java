@@ -1,10 +1,13 @@
 package christmas.domain.promotion;
 
+import christmas.domain.benefit.DiscountAmount;
+import christmas.domain.benefit.Giveaway;
+import christmas.domain.benefit.PromotionBenefits;
 import christmas.domain.order.OrderDate;
 import christmas.domain.order.OrderMenus;
 
-import static christmas.constant.Giveaway.CHAMPAGNE;
-import static christmas.constant.Giveaway.NO_GIVEAWAY;
+import static christmas.constant.GiveawayMenu.CHAMPAGNE;
+import static christmas.constant.GiveawayMenu.NO_GIVEAWAY;
 import static christmas.constant.PromotionTitle.GIVEAWAY;
 import static christmas.constant.PromotionTitle.NO_PROMOTION;
 
@@ -21,9 +24,8 @@ public class GiveawayPromotion implements Promotion {
         if (!isAvailableCondition(orderDate, orderMenus)) {
             return new PromotionBenefits(
                     NO_PROMOTION,
-                    ZERO_VALUE,
-                    NO_GIVEAWAY,
-                    ZERO_VALUE
+                    new DiscountAmount(ZERO_VALUE),
+                    new Giveaway(NO_GIVEAWAY, ZERO_VALUE)
             );
         }
 
@@ -45,9 +47,8 @@ public class GiveawayPromotion implements Promotion {
     private PromotionBenefits createBenefits(OrderMenus orderMenus) {
         return new PromotionBenefits(
                 GIVEAWAY,
-                ZERO_VALUE,
-                CHAMPAGNE,
-                GIVEAWAY_COUNT
+                new DiscountAmount(ZERO_VALUE),
+                new Giveaway(CHAMPAGNE, GIVEAWAY_COUNT)
         );
     }
 }
