@@ -1,5 +1,6 @@
 package christmas.domain.promotion;
 
+import christmas.domain.benefit.PromotionBenefits;
 import christmas.domain.order.OrderDate;
 import christmas.domain.order.OrderMenu;
 import christmas.domain.order.OrderMenus;
@@ -11,7 +12,6 @@ import org.junit.jupiter.params.provider.MethodSource;
 import java.util.List;
 import java.util.stream.Stream;
 
-import static christmas.constant.Giveaway.NO_GIVEAWAY;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
 
@@ -21,18 +21,20 @@ class ChristmasDdayDiscountPromotionTest {
     @DisplayName("크리스마스가 다가올수록 날마다 100원씩 증가한 할인 혜택을 받을 수 있다.")
     @MethodSource("orderDates")
     @ParameterizedTest(name = "[{index}] \"{0}일\" => {1}원 할인")
-    void applyPromotion(int date, int discountPrice) throws Exception {
+    void applyPromotion(int date, int discountAmount) throws Exception {
         // Given
         OrderDate orderDate = new OrderDate(date);
         OrderMenus orderMenus = new OrderMenus(List.of(new OrderMenu("타파스", 4)));
+        int preDiscountTotalOrderPrice = orderMenus.getTotalOrderPrice();
+        int expectedDiscountedTotalOrderPrice = preDiscountTotalOrderPrice - discountAmount;
         ChristmasDdayDiscountPromotion christmasDdayDiscountPromotion = new ChristmasDdayDiscountPromotion();
 
         // When
         PromotionBenefits promotionBenefits = christmasDdayDiscountPromotion.applyPromotion(orderDate, orderMenus);
+        int postDiscountTotalOrderPrice = promotionBenefits.applyBenefit(preDiscountTotalOrderPrice);
 
         // Then
-        assertThat(promotionBenefits.getDiscountPrice()).isEqualTo(discountPrice);
-        assertThat(promotionBenefits.getGiveaway()).isEqualTo(NO_GIVEAWAY);
+        assertThat(postDiscountTotalOrderPrice).isEqualTo(expectedDiscountedTotalOrderPrice);
     }
 
     private static Stream<Arguments> orderDates() {

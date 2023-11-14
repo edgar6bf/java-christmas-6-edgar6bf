@@ -1,14 +1,16 @@
 package christmas.domain.promotion;
 
+import christmas.domain.benefit.PromotionBenefits;
 import christmas.domain.order.OrderDate;
 import christmas.domain.order.OrderMenu;
 import christmas.domain.order.OrderMenus;
+import christmas.dto.GiveawayBenefit;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static christmas.constant.Giveaway.CHAMPAGNE;
+import static christmas.constant.GiveawayMenu.CHAMPAGNE;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @DisplayName("[GiveawayPromotion] : 증정 이벤트 테스트")
@@ -29,10 +31,10 @@ class GiveawayPromotionTest {
 
         // When
         PromotionBenefits promotionBenefits = giveawayPromotion.applyPromotion(orderDate, notHasDessertMenu);
+        GiveawayBenefit giveawayBenefit = promotionBenefits.applyBenefit();
 
         // Then
-        assertThat(promotionBenefits.getDiscountPrice()).isZero();
-        assertThat(promotionBenefits.getGiveaway()).isEqualTo(CHAMPAGNE);
-        assertThat(promotionBenefits.getGiveawayCount()).isEqualTo(expectedGiveawayCount);
+        assertThat(giveawayBenefit.giveawayName()).isEqualTo(CHAMPAGNE.getName());
+        assertThat(giveawayBenefit.count()).isEqualTo(expectedGiveawayCount);
     }
 }
