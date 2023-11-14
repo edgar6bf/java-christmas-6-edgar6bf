@@ -16,7 +16,7 @@ public class OrderDate {
 
     private void validateDate(int date) {
         if (date < START_DATE || date > END_DATE) {
-            throw new IllegalArgumentException("유효하지 않은 날짜입니다.");
+            throw new IllegalArgumentException("유효하지 않은 주문 날짜입니다.");
         }
     }
 
