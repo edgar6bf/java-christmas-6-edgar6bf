@@ -40,8 +40,8 @@ class DiscountAmountTest {
 
     @DisplayName("할인 혜택이 존재하는지 여부를 반환한다.")
     @MethodSource("discountAmountAndHasDiscountBenefits")
-    @ParameterizedTest(name = "[{index}] 설정된 할인 금액 : \"{0}원\" => {1}")
-    void returnHasDiscountBenefit(int discountAmountValue, boolean expected) throws Exception {
+    @ParameterizedTest(name = "[{index}] 할인 금액 : {0}원 => {1}")
+    void applicableDiscount(int discountAmountValue, boolean expected) throws Exception {
         // Given
         DiscountAmount discountAmount = new DiscountAmount(discountAmountValue);
 
@@ -59,16 +59,16 @@ class DiscountAmountTest {
         );
     }
 
-    @DisplayName("원금을 입력하면 할인을 적용한다.")
+    @DisplayName("원금을 입력하면 할인 금액을 적용한다.")
     @Test
     void applyDiscount() throws Exception {
         // Given
         DiscountAmount discountAmount = new DiscountAmount(3000);
-        int inputAmount = 7000;
+        int principal = 7000;
         int expected = 4000;
 
         // When
-        int discounted = discountAmount.applyDiscount(inputAmount);
+        int discounted = discountAmount.applyDiscount(principal);
 
         // Then
         assertThat(discounted).isEqualTo(expected);

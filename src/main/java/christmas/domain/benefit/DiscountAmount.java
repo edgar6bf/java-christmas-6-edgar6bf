@@ -21,8 +21,8 @@ public class DiscountAmount {
         return discountAmount > ZERO_AMOUNT;
     }
 
-    public int applyDiscount(int price) {
-        return price - discountAmount;
+    public int applyDiscount(int principal) {
+        return principal - discountAmount;
     }
 
     public int getBenefitAmount() {
