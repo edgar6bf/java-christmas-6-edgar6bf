@@ -1,6 +1,6 @@
 package christmas.view;
 
-import christmas.domain.console.Console;
+import christmas.view.console.Console;
 import christmas.dto.MenuNameAndCount;
 
 import java.util.*;

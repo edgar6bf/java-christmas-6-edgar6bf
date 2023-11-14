@@ -1,8 +1,8 @@
 package christmas.config;
 
 import christmas.controller.ChristmasPromotionController;
-import christmas.domain.console.Console;
-import christmas.domain.console.ProductionConsole;
+import christmas.view.console.Console;
+import christmas.view.console.ProductionConsole;
 import christmas.service.ChristmasPromotionService;
 import christmas.view.InputView;
 import christmas.view.OutputView;
