@@ -60,7 +60,7 @@ class GiveawayTest {
 
     @DisplayName("증정품 혜택이 존재하는지 여부를 반환한다.")
     @MethodSource("giveawayAndHasGiveawayBenefits")
-    @ParameterizedTest(name = "[{index}] 설정된 증정품 항목 : \"{3}\" => {2}")
+    @ParameterizedTest(name = "[{index}] 증정품 항목 : {3} => {2}")
     void returnHasDiscountBenefit(GiveawayMenu giveawayMenu, int count, boolean expected, String giveawayName) throws Exception {
         // Given
         Giveaway giveaway = new Giveaway(giveawayMenu, count);
